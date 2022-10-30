@@ -1,0 +1,79 @@
+﻿@model IEnumerable<HW06.Models.order_items>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Index";
+}
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <canvas id="MyChart"></canvas>
+    </div>
+    <script>
+        var data = @Html.Raw(Json.Encode(Model));
+        /*console.log(data);*/
+
+        let MyChart = document.getElementById('MyChart').getContext('2d');
+
+        let barChart = new Chart(MyChart, {
+            type: 'bar',
+            data: {
+                labels: ['January','Febuary','March','April','May','June','July','August','September','October','November','December'],
+                datasets: [{
+                    label: 'Bikes Sold',
+                    data: [
+                        152,
+                        141,
+                        190,
+                        225,
+                        108,
+                        109,
+                        106,
+                        130,
+                        131,
+                        131,
+                        100,
+                        103
+                    ],
+                    backgroundColor: [
+                        'yellow',
+                        'green',
+                        'yellow',
+                        'green',
+                        'yellow',
+                        'green',
+                        'yellow',
+                        'green',
+                        'yellow',
+                        'green',
+                        'yellow',
+                        'green'
+                    ],
+                    borderWidth: 1,
+                    borderColor: 'grey',
+                    hoverBorderWidth: 2,
+                    hoverBorderColor: 'black'
+
+
+                }]
+            },
+            options: {
+                title: {
+                    display: 'true',
+                    text: 'Mountain Bike Order Report',
+                    fontSize: 34
+            }
+            }
+        });
+    </script>
+</body>
+
+
+
+
+
